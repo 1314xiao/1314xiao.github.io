@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>极简导航</title>
+    <title>聚合导航</title>
     <style>
         * {
             margin: 0;
@@ -56,6 +56,27 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+        }
+        #search-engine{
+        	padding: 0 10px;
+            background: linear-gradient(90deg, #4299e1, #38b2ac);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 17px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.2);
+        }
+        #search-engine:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.3);
+        }
+        #search-engine:active {
+            transform: translateY(0);
+        }
+        #engine{
+        	color:cornflowerblue;
         }
         #search-input {
             flex: 1;
@@ -134,6 +155,7 @@
         }
         .nav-list a:hover {
             color: #4299e1;
+            padding-left: 5px;
             background: #f0f8fb;
             transform: translateX(0);
             box-shadow: 0 2px 8px rgba(66, 153, 225, 0.1);
@@ -176,9 +198,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>极简导航</h1>
-        <!-- 搜索框 -->
+        <h1>聚合导航</h1>
         <div class="search-box">
+        	<select id="search-engine">
+        		<option value="bing" id="engine">必应</option>
+                <option value="baidu" id="engine">百度</option>
+                <option value="google" id="engine">谷歌</option>
+            </select>
             <input type="text" id="search-input" placeholder="输入关键词搜索...">
             <button class="search-btn" id="search-btn">搜索</button>
         </div>
@@ -259,27 +285,41 @@
         </div>
         <!-- 网站信息区域 -->
         <div class="site-info">
-            <p>网站简介：极简导航，聚合各类常用优质网站，提供便捷的上网入口</p>
-            <p>作者名：红尘忆晓</p>
+            <p>网站简介：聚合导航，多引擎检索，聚合各类常用优质网站，提供便捷的上网入口</p>
+            <p>作者：红尘忆晓</p>
         </div>
     </div>
 
     <script>
+        const searchEngine = document.getElementById('search-engine');
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
 
+        // 定义各搜索引擎的跳转链接
+        const engineMap = {
+            baidu: 'https://www.baidu.com/s?wd=',
+            google: 'https://www.google.com/search?q=',
+            bing: 'https://cn.bing.com/search?q='
+        };
+
+        // 搜索功能
         function doSearch() {
             const keyword = searchInput.value.trim();
+            const selectedEngine = searchEngine.value;
             if (keyword) {
-                window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(keyword)}`, '_blank');
-            } else {
-                alert('请输入搜索关键词！');
+                const searchUrl = engineMap[selectedEngine] + encodeURIComponent(keyword);
+                window.open(searchUrl, '_blank');
             }
         }
 
+        // 按钮点击搜索
         searchBtn.addEventListener('click', doSearch);
-        searchInput.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') doSearch();
+
+        // 回车触发搜索
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                doSearch();
+            }
         });
     </script>
 </body>
