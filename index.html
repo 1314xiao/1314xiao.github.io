@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极简导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* 渐变背景+页面基础样式 */
+        body {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f8fb 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 容器卡片化 */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 32px rgba(138, 178, 215, 0.2);
+            backdrop-filter: blur(8px);
+        }
+        /* 标题美化 */
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 35px;
+            font-size: 32px;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #4299e1, #38b2ac);
+            border-radius: 2px;
+            margin: 12px auto 0;
+        }
+        /* 搜索框优化 */
+        .search-box {
+            display: flex;
+            margin-bottom: 50px;
+            gap: 12px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #search-input {
+            flex: 1;
+            padding: 16px 24px;
+            border: 1px solid #e8f4f8;
+            border-radius: 12px;
+            font-size: 17px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        #search-input:focus {
+            border-color: #4299e1;
+            box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.15);
+            background: white;
+        }
+        .search-btn {
+            padding: 0 30px;
+            background: linear-gradient(90deg, #4299e1, #38b2ac);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 17px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.2);
+        }
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.3);
+        }
+        .search-btn:active {
+            transform: translateY(0);
+        }
+        /* 导航组布局 */
+        .nav-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        /* 导航组标题 */
+        .nav-group h2 {
+            color: #2d3748;
+            font-size: 19px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f4f8;
+            display: flex;
+            align-items: center;
+        }
+        .nav-group h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 20px;
+            background: #4299e1;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        /* 导航列表 */
+        .nav-list {
+            list-style: none;
+        }
+        .nav-list li {
+            margin-bottom: 12px;
+        }
+        .nav-list a {
+            text-decoration: none;
+            color: #4a5568;
+            font-size: 16px;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+        }
+        .nav-list a:hover {
+            color: #4299e1;
+            background: #f0f8fb;
+            transform: translateX(0);
+            box-shadow: 0 2px 8px rgba(66, 153, 225, 0.1);
+        }
+        /* 网站信息区域 */
+        .site-info {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #e8f4f8;
+            color: #718096;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 20px auto;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            .search-box {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .nav-groups {
+                gap: 25px;
+            }
+        }
+        @media (max-width: 480px) {
+            .nav-group h2 {
+                font-size: 18px;
+            }
+            .nav-list a {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>极简导航</h1>
+        <!-- 搜索框 -->
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="输入关键词搜索...">
+            <button class="search-btn" id="search-btn">搜索</button>
+        </div>
+        <!-- 导航分类 -->
+        <div class="nav-groups">
+            <div class="nav-group">
+                <h2>社交娱乐</h2>
+                <ul class="nav-list">
+                    <li><a href="https://www.weixin.com" target="_blank">微信</a></li>
+                    <li><a href="https://weibo.com" target="_blank">微博</a></li>
+                    <li><a href="https://www.bilibili.com" target="_blank">哔哩哔哩</a></li>
+                    <li><a href="https://www.douyin.com" target="_blank">抖音</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h2>搜索引擎</h2>
+                <ul class="nav-list">
+                    <li><a href="https://www.baidu.com" target="_blank">百度</a></li>
+                    <li><a href="https://www.sogou.com" target="_blank">搜狗</a></li>
+                    <li><a href="https://www.zhihu.com" target="_blank">知乎</a></li>
+                    <li><a href="https://www.google.com" target="_blank">谷歌</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h2>学习工具</h2>
+                <ul class="nav-list">
+                    <li><a href="https://www.zhihuishu.com" target="_blank">智慧树</a></li>
+                    <li><a href="https://www.icourse163.org" target="_blank">中国大学MOOC</a></li>
+                    <li><a href="https://www.csdn.net" target="_blank">CSDN</a></li>
+                    <li><a href="https://leetcode.cn" target="_blank">力扣</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h2>生活服务</h2>
+                <ul class="nav-list">
+                    <li><a href="https://www.taobao.com" target="_blank">淘宝</a></li>
+                    <li><a href="https://www.meituan.com" target="_blank">美团</a></li>
+                    <li><a href="https://www.ctrip.com" target="_blank">携程</a></li>
+                    <li><a href="https://www.12306.cn" target="_blank">12306</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h2>开发相关</h2>
+                <ul class="nav-list">
+                    <li><a href="https://github.com" target="_blank">GitHub</a></li>
+                    <li><a href="https://git-scm.com" target="_blank">Git 官网</a></li>
+                    <li><a href="https://www.runoob.com" target="_blank">菜鸟教程</a></li>
+                    <li><a href="https://gitee.com" target="_blank">码云</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h2>新闻资讯</h2>
+                <ul class="nav-list">
+                    <li><a href="https://www.people.com.cn" target="_blank">人民网</a></li>
+                    <li><a href="https://www.xinhuanet.com" target="_blank">新华网</a></li>
+                    <li><a href="https://www.sina.com.cn" target="_blank">新浪新闻</a></li>
+                    <li><a href="https://news.163.com" target="_blank">网易新闻</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h2>游戏人生</h2>
+                <ul class="nav-list">
+                    <li><a href="https://ys.mihoyo.com/cloud/#/" target="_blank">云原神</a></li>
+                    <li><a href="https://sr.mihoyo.com/cloud/#/" target="_blank">云崩铁</a></li>
+                    <li><a href="https://cloudgame.ds.163.com/yjwj?utm_source=dashenbanner" target="_blank">云永劫</a></li>
+                    <li><a href="https://gamer.qq.com/v2/game/95601" target="_blank">云王者</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h2>AI工具</h2>
+                <ul class="nav-list">
+                    <li><a href="https://www.doubao.com/code/chat/" target="_blank">豆包</a></li>
+                    <li><a href="https://yiyan.baidu.com/" target="_blank">文心一言 </a></li>
+                    <li><a href="https://www.tongyi.com/" target="_blank">通义千问</a></li>
+                    <li><a href="https://chat.deepseek.com/" target="_blank">deepseek</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 网站信息区域 -->
+        <div class="site-info">
+            <p>网站简介：极简导航，聚合各类常用优质网站，提供便捷的上网入口</p>
+            <p>作者名：红尘忆晓</p>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+
+        function doSearch() {
+            const keyword = searchInput.value.trim();
+            if (keyword) {
+                window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(keyword)}`, '_blank');
+            } else {
+                alert('请输入搜索关键词！');
+            }
+        }
+
+        searchBtn.addEventListener('click', doSearch);
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') doSearch();
+        });
+    </script>
+</body>
+</html>
