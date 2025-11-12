@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>红尘忆晓</title>
+    <script src="3.4.17"></script>
+    <style>
+        .hero-bg {
+            background-image: url('1015-1920x1080.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.3);
+            z-index: 0;
+        }
+        .overlay {
+            background-color: rgba(255,255,255,0.7);
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        .poem-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .poem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .poem-line {
+            line-height: 2;
+            letter-spacing: 1px;
+        }
+        .footer-text {
+            line-height: 2.5;
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="scroll-smooth">
+    <nav class="fixed top-0 left-0 right-0 bg-blue-500 text-white py-2 px-4 flex justify-between items-center z-20">
+        <h1 class="text-lg md:text-xl">红尘忆晓</h1>
+        <div class="text-white">:::</div>
+    </nav>
+
+    <section class="hero-bg pt-24 pb-16 min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
+        <div class="relative z-10 w-full">
+            <h2 class="text-3xl md:text-4xl font-bold text-red-800 mb-8">红尘忆晓</h2>
+            <div class="mt-12">
+                <h3 class="text-4xl md:text-5xl font-bold text-red-800 mb-4 text-shadow">红尘一梦中</h3>
+                <p class="text-xl md:text-2xl text-gray-800 mb-10 text-shadow">忆往昔岁月，晓人间温情</p>
+                <a href="#about" class="bg-red-600 text-white py-3 px-8 rounded-lg text-lg hover:bg-red-700 transition-colors inline-block">
+                    轻启过往 <span>▼</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 overlay px-4">
+        <div class="max-w-2xl mx-auto flex flex-col items-center">
+            <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-pink-200 mb-8">
+                <img src="xiao.jpg" alt="个人头像" class="w-full h-full object-cover">
+            </div>
+            <div class="text-gray-800">
+                <p class="text-lg md:text-xl mb-6 leading-relaxed">
+                    笔名红尘忆晓，偏爱笔墨书香，喜于文字间记录红尘点滴。曾流连烟雨江南，也曾驻足塞外荒原。
+                </p>
+                <p class="text-lg md:text-xl leading-relaxed">
+                    热衷古典文学创作，闲暇时煮茶研墨，以诗词寄情，用文字绘梦；亦好雅趣小游戏，偶作藏字诗以记之。深信每一段经历都是生命的馈赠，每一份回忆都值得珍藏。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="hobbies" class="py-16 bg-blue-50/80 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h3 class="text-3xl md:text-4xl font-bold text-red-800 text-center mb-6">闲情雅趣</h3>
+            <div class="w-32 h-1 bg-pink-300 mx-auto mb-12"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 五子棋 -->
+                <div class="poem-card bg-white rounded-lg shadow-md p-6 text-center">
+                    <h4 class="text-2xl font-bold text-red-800 mb-4">藏“五子棋”</h4>
+                    <div class="text-gray-700 poem-line">
+                        <p>五子连星定乾坤，</p>
+                        <p>子落棋盘藏智论。</p>
+                        <p>棋逢对手酣战乐，</p>
+                        <p>闲敲黑白醉晨昏。</p>
+                    </div>
+                </div>
+                <!-- 2048 -->
+                <div class="poem-card bg-white rounded-lg shadow-md p-6 text-center">
+                    <h4 class="text-2xl font-bold text-red-800 mb-4">藏“2048”</h4>
+                    <div class="text-gray-700 poem-line">
+                        <p>二合四聚叠层楼，</p>
+                        <p>零距拼合巧运筹。</p>
+                        <p>四阶方格藏玄机，</p>
+                        <p>八方逐梦破云丘。</p>
+                    </div>
+                </div>
+                <!-- 扫雷 -->
+                <div class="poem-card bg-white rounded-lg shadow-md p-6 text-center">
+                    <h4 class="text-2xl font-bold text-red-800 mb-4">藏“扫雷”</h4>
+                    <div class="text-gray-700 poem-line">
+                        <p>扫尽迷雾辨险途，</p>
+                        <p>雷声隐处暗标伏。</p>
+                        <p>谨行步步寻安境，</p>
+                        <p>智破迷局乐自足。</p>
+                    </div>
+                </div>
+                <!-- 围棋 -->
+                <div class="poem-card bg-white rounded-lg shadow-md p-6 text-center">
+                    <h4 class="text-2xl font-bold text-red-800 mb-4">藏“围棋”</h4>
+                    <div class="text-gray-700 poem-line">
+                        <p>围地争边角逐先，</p>
+                        <p>棋行经纬布山川。</p>
+                        <p>千般变化藏真意，</p>
+                        <p>一局输赢悟大千。</p>
+                    </div>
+                </div>
+                <!-- 猜拳 -->
+                <div class="poem-card bg-white rounded-lg shadow-md p-6 text-center md:col-span-2">
+                    <h4 class="text-2xl font-bold text-red-800 mb-4">藏“猜拳”</h4>
+                    <div class="text-gray-700 poem-line">
+                        <p>猜度心意出拳疾，</p>
+                        <p>拳分胜负趣中嬉。</p>
+                        <p>输赢不过须臾事，</p>
+                        <p>乐在相逢两不欺。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新增尾部文案 -->
+    <footer class="py-12 bg-blue-900 text-white text-center px-4 relative">
+        <div class="max-w-2xl mx-auto footer-text">
+            <p>天地本无我 得方寸之地 以容身</p>
+            <p>天地应有我 融此身之 心魂气神</p>
+            <div class="w-40 h-0.5 bg-pink-300 mx-auto my-8 opacity-70"></div>
+            <p class="text-sm opacity-80">红尘忆晓 © 2025 | 笔墨寄情 岁月留痕</p>
+        </div>
+    </footer>
+</body>
+</html>
